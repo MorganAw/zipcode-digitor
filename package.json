@@ -7,7 +7,7 @@
     "deploy": "npm run clean && npm run build",
     "build": "./node_modules/.bin/babel src -d ./build/compiled && webpack",
     "local": "npm run clean && npm run build && node build/compiled/server/server.js",
-    "start": "npm run build && node build/compiled/server/server.js"
+    "start": "npm run clean && npm run build && node build/compiled/server/server.js"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
@@ -19,9 +19,7 @@
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3",
-    "serve-favicon": "^2.3.0"
-  },
-  "devDependencies": {
+    "serve-favicon": "^2.3.0",
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
     "webpack": "^1.12.2"
