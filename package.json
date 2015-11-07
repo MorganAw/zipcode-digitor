@@ -7,7 +7,7 @@
     "deploy": "npm run clean && npm run build",
     "build": "./node_modules/.bin/babel src -d ./build/compiled && webpack",
     "local": "npm run clean && npm run build && node build/compiled/server/server.js",
-    "start": "node build/compiled/server/server.js"
+    "start": "npm run build && node build/compiled/server/server.js"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
