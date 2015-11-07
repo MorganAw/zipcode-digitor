@@ -8,7 +8,7 @@ import util from 'util';
 export function express_router(app, router) {
   // API endpoints
   router.post('/save_tsettings', (req, res) => {
-
+    
   });
 
   router.get('/get_listings', (req, res) => {
