@@ -18,9 +18,9 @@ export function express_router(app, router) {
       client.query('SELECT * FROM test_table', function(err, result) {
         done();
         if (err)
-         { console.error(err); response.send("Error " + err); }
+         { console.error(err); res.send("Error " + err); }
         else
-         { response.render('pages/db', {results: result.rows} ); }
+         { res.render('pages/db', {results: result.rows} ); }
       });
     });
   })
