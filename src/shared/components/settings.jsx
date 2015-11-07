@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import { Preferences } from './preferences';
+
 export class Settings extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +11,7 @@ export class Settings extends React.Component {
     console.log('*** Rendering settings ***');
     return (
       <div>
-        SETTINGS ARE HERE
+        <Preferences />
       </div>
     );
   }
