@@ -3,6 +3,7 @@ import { renderToString }            from 'react-dom/server';
 import { match, RoutingContext }     from 'react-router';
 import react_routes                  from '../../shared/react_routes';
 
+import pg from 'pg';
 import util from 'util';
 
 export function express_router(app, router) {
@@ -11,6 +12,18 @@ export function express_router(app, router) {
     console.log('***** Getting route path *****');
     react_routing(req, res);
   });
+
+  router.get('/db', function (req, res) {
+    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+      client.query('SELECT * FROM test_table', function(err, result) {
+        done();
+        if (err)
+         { console.error(err); response.send("Error " + err); }
+        else
+         { response.render('pages/db', {results: result.rows} ); }
+      });
+    });
+  })
 
   router.get('/tenant', (req, res) => {
     console.log('***** Getting route path *****');
