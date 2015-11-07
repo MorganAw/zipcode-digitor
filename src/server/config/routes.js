@@ -6,6 +6,15 @@ import react_routes                  from '../../shared/react_routes';
 import util from 'util';
 
 export function express_router(app, router) {
+  // API endpoints
+  router.post('/save_tsettings', (req, res) => {
+
+  });
+
+  router.get('/get_listings', (req, res) => {
+
+  });  
+
   // Root path
   router.get('/', (req, res) => {
     console.log('***** Getting route path *****');
