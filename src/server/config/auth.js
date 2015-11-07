@@ -15,7 +15,7 @@ export function auth(app, passport) {
     resave: false,
     saveUninitialized: true,
     secret: 'definitelyasecret',
-    store: 
+    store: ''
   }));
 
   // Initialize passport

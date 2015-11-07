@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class Base extends React.Component {
+export class home_body extends React.Component {
   constructor(props) {
     super(props);
   }

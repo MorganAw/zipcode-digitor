@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded(
 app.use(bodyParser.json());
 
 // Passport auth config
-auth(app, passport);
+//auth(app, passport);
 
 // Handle routing
 express_router(app, router);
