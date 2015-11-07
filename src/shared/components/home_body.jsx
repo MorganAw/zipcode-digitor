@@ -1,6 +1,9 @@
 import React from 'react';
 
-var home_body = React.createClass({
+export class Base extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     console.log('*** Rendering home_body ***');
     return (
@@ -10,6 +13,4 @@ var home_body = React.createClass({
       </div>
     );
   }
-});
-
-module.exports = home_body;
+};
