@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import passport from 'passport';
 import favicon from 'serve-favicon';
+import pg from 'pg';
 
 // Import self-generated methods
 import { express_router } from './config/routes';
@@ -22,6 +23,18 @@ app.use(bodyParser.urlencoded(
   { extended: true }
 ));
 app.use(bodyParser.json());
+
+app.get('/db', function (request, response) {
+  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    client.query('SELECT * FROM test_table', function(err, result) {
+      done();
+      if (err)
+       { console.error(err); response.send("Error " + err); }
+      else
+       { response.render('pages/db', {results: result.rows} ); }
+    });
+  });
+})
 
 // Passport auth config
 //auth(app, passport);

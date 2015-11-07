@@ -10,18 +10,19 @@
     "start": "npm run clean && npm run build && node build/compiled/server/server.js"
   },
   "dependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "history": "^1.13.0",
     "jade": "^1.11.0",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
+    "pg": "^4.4.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3",
     "serve-favicon": "^2.3.0",
-    "babel": "^5.8.23",
-    "babel-core": "^5.8.25",
     "webpack": "^1.12.2"
   },
   "contributors": [
