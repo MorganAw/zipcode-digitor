@@ -12,6 +12,15 @@ export function express_router(app, router) {
     react_routing(req, res);
   });
 
+  router.get('/tenant', (req, res) => {
+    console.log('***** Getting route path *****');
+    react_routing(req, res);
+  });
+
+  router.get('/owner', (req, res) => {
+    console.log('***** Getting route path *****');
+    react_routing(req, res);
+  });
   // Mount the router on the app
   app.use('/', router);
 
