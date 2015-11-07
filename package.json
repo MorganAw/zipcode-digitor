@@ -1,0 +1,55 @@
+{
+  "name": "zipcode-digitor",
+  "version": "1.0.0",
+  "description": "DIGITIZING THE REAL ESTATE MULTIVERSE ONE UNIVERSE AT A TIME",
+  "scripts": {
+    "clean": "rm -rf build/compiled && rm -f static/packed.js",
+    "deploy": "npm run clean && npm run build",
+    "build": "./node_modules/.bin/babel src -d ./build/compiled && webpack",
+    "local": "npm run clean && npm run build && node build/compiled/server/server.js",
+    "start": "node build/compiled/server/server.js"
+  },
+    "dependencies": {
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-router": "^1.0.0-rc3",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "webpack": "^1.12.2"
+  },
+  "contributors": [
+    {
+      "name": "Morgan Aw",
+      "email": "morgancaw@gmail.com",
+      "url": "http://www.morganaw.com/"
+    },
+    {
+      "name": "Julian Ignaczak",
+      "email": "j3pydev@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MorganCAw/simple-webapp.git"
+  },
+  "keywords": [
+    "React",
+    "React-router",
+    "Babel",
+    "Webpack",
+    "isomorphic"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MorganCAw/zipcode-digitor/issues"
+  },
+  "homepage": "https://github.com/MorganCAw/zipcode-digitor#readme",
+  "engines": {
+    "node": "^4.1.2"
+  }
+}
