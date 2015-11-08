@@ -1,0 +1,49 @@
+Schema
+
+User {
+  id: "primary key",
+  type: "tenant/owner",
+  email: "user's email",
+  occupation: "user's job",
+  marital: "marital status",
+  income: "user's income",
+  birthday: "user's age",
+  summary: "user's about me",
+  refs: "JSON object (stored as plaintext) of user's references"
+}
+
+Tenant Prefs {
+  user_id: "id of the user, primary key",
+  beds: "bedrooms",
+  baths: "bathrooms",
+  sqft: "square footage",
+  type: "type of housing",
+  min: "minimum acceptable price",
+  max: "maximum acceptable price",
+  garage: "boolean garage desired",
+  yard: "boolean yard desired",
+  fire: "boolean fireplace desired",
+  basement: "boolean basement desired",
+  attic: "boolean attic desired"
+}
+
+Matches {
+  user_id: "id of the tenant user, foreign key",
+  listing_id: "id of the rental listing, foreign key"
+}
+
+Owner Prefs {
+  user_id: "id of the user, foreign key",
+  property_id: "API id AKA listing id",
+  price: "price set by the user",
+  leeway: "percentage leeway set by user (max 15%)",
+  refs: "minimum number of references that tenant profile can have",
+  income: "minimum income that tenant profile can have"
+}
+
+------------------ OPTION 1 ------------------------------
+
+MY PRICE IS : $40,000
+LEEWAY: 15%
+
+WE CALCULATE RANGE: $36,000 -> $44,000

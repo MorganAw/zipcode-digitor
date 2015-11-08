@@ -13,6 +13,7 @@ import https                         from 'https';
 // Import controllers
 import { save_tprofile }             from '../controllers/save_tprofile';
 import { db_prep }                   from '../controllers/db_prep';
+import { populate }                   from '../controllers/populate';
 
 export function express_router(app, router) {
   var conString = "postgres://maw-bsky@localhost/retsly_hackathon";
@@ -30,7 +31,7 @@ export function express_router(app, router) {
   router.get('/', (req, res) => {
     console.log('***** Getting route path *****');
     react_routing(req, res);
-    // db_prep(client);
+    // db_prep(client, populate);
   });
 
   // Heroku postgres connection
@@ -45,6 +46,22 @@ export function express_router(app, router) {
   //     });
   //   });
   // });
+
+
+  router.get('/how_it_works', (req, res) => {
+    console.log('***** Getting how_it_works path *****');
+    react_routing(req, res);
+  });
+
+  router.get('/details', (req, res) => {
+    console.log('***** Getting details path *****');
+    react_routing(req, res);
+  });
+
+  router.get('/tenant', (req, res) => {
+    console.log('***** Getting route path *****');
+    react_routing(req, res);
+  });
 
   // call to API for listings
   router.post('/get_listings', (req, res) => {
@@ -90,6 +107,9 @@ export function express_router(app, router) {
           res.send(finalR);
       }
 
+      ajaxG.on('error', (e) => {
+        if(e) console.log("GMaps API Error: ", e);
+      });
   });
 
   router.get('/tenant', (req, res) => {

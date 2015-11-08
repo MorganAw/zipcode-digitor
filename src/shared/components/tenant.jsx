@@ -1,7 +1,7 @@
-import React from 'react';
+import React          from 'react';
 
-import { Menu } from './menu';
-import { Listings } from './listings';
+import { Menu }       from './menu';
+import { Listings }   from './listings';
 
 export class Tenant extends React.Component {
   constructor(props) {
