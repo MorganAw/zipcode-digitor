@@ -25,13 +25,9 @@ export function express_router(app, router) {
     // db_prep(client, populate);
   });
 
-  router.get('/details', (req, res) => {
-    console.log('***** Getting details path *****');
-    res.render('details.html');
-  });
-
   router.get('/tenant', (req, res) => {
     console.log('***** Getting route path *****');
+    
     res.render('tenant.html');
   });
 
@@ -111,7 +107,6 @@ export function express_router(app, router) {
               media: fRes.bundle[0].media,
               lng: fRes.bundle[0].coordinates[0],
               lat: fRes.bundle[0].coordinates[1],
-
           });
         });
       });
