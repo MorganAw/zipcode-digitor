@@ -33,6 +33,11 @@ export function express_router(app, router) {
     res.render('tenant.html');
   });
 
+  router.get('/match', (req, res) => {
+    console.log('***** Getting match path *****');
+    res.render('match.html');
+  });
+
   router.get('/owner', (req, res) => {
     console.log('***** Getting owner route path *****');
   });
