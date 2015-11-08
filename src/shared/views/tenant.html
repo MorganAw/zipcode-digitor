@@ -47,32 +47,11 @@
           </div>
           </div>
         </div>
-  </nav>  
-    <div id="page-content-wrapper">
-      <div className="toggle-button"><a href="#menu-toggle" className="btn btn-default" id="menu-toggle">Toggle Menu</a></div>
-      <div className="container-fluid">
-        <div className="row">
-          <h1> Suggested Listings for You </h1>
-          <img src="<%= media[0].url %>"></img>
-        </div>
-      </div>
-    </div>
-    <div class="btn btn-default detail-button"><a href="#" class="toggle" id="detail-toggle" onclick="deetsTog()">Toggle Details</a></div>
-    <div id="details" class="container-fluid">
+  </nav>     
       <div class="car">
-
            <!--  CAROUSEL  -->
-           <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-            <% for(var counter = 0; counter < media.length; counter++) {%>
-              <% if(counter == 0) { %>
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-              <% } else { %>
-                <li data-target="#carousel-example-generic" data-slide-to="<%= counter %>"></li>
-              <% } %>
-            <% } %>
-            </ol>
+           <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
               <% for(var counter = 0; counter < media.length; counter++) {%>
@@ -87,25 +66,28 @@
                 <% } %>
               <% } %>
             </div>
-            <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
+        </div>
       </div>
-      <div class="mp">
-          <!--  MAP  -->
-          <div id="map" style="height: 500px; width: 500px;"></div>
 
+<!--       <div class="btn btn-default detail-button"><a href="#" class="toggle" id="detail-toggle" onclick="deetsTog()">Toggle Details</a></div> -->
+      
+      <div class="button-container">
+        <div class="row">
+          <button class="btn btn-default tenant-buttons" id="dislike-button" onclick="div_show2()">
+          <span class="glyphicon glyphicon-remove"></span>
+          </button>
+          <button class="btn btn-default tenant-buttons" id="like-button" onclick="div_show()">
+            <span class="glyphicon glyphicon-heart"></span>
+          </button>
+        </div>
       </div>
+<!--       <div id="details">
+        <div class="mp">
+            <div id="map" style="height: 500px; width: 500px;"></div>
+
+        </div> -->
       <div id="abc">
         <div id="popupContact">
-           <!-- Contact Us Form -->
           <form action="#" id="form" method="post" name="form">
             <img id="close" src="/img/close.png" onclick ="div_hide()">
             <h2>You Got a Match!</h2>
@@ -122,9 +104,34 @@
           </form>
         </div>
       </div>
-    </div>
-  </div>
-  </div>
+
+      <div id="xyz">
+        <div id="popupContact">
+          <form action="#" id="form" method="post" name="form">
+            <img id="close" src="/img/close.png" onclick ="div_hide2()">
+            <h2>Make us make your list better!</h2>
+            <hr>
+            <p>Please tell us why you didn't like this property and we can help you make a better list for you!</p>
+          <div class="checkbox">
+            <div>
+            <label><input type="checkbox" value="">Location</label>
+            </div>
+            <div>
+            <label><input type="checkbox" value="">Amenities</label>
+            </div>
+            <div>
+            <label><input type="checkbox" value="">Style</label>
+            </div>
+            <div>
+            <label><input type="checkbox" value="">Others</label>
+          </div>
+          </div>
+          <a href="javascript:%20check_empty()" id="submit">Send</a>
+          </form>
+        </div>
+      </div>
+<!--       </div>
+    </div> -->
 
 <script>
  function deetsTog() {
