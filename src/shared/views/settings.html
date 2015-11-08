@@ -61,12 +61,38 @@
   </nav>  
   <div>
     <form action="/save_tsettings" method="post">
-      How many bedrooms do you want? <input type="number" name="beds" min="0" max="25" placeholder="<%= settings.beds %>"/><br />
-      How many bathrooms do you want? <input type="number" name="baths" min="0" max="25" placeholder="<%= settings.baths %>"/><br />
-      How large of a house do you want (in sq ft.)? <input type="number" name="sqft" min="0" max="1000000" placeholder="<%= settings.sqft %>"/><br />
-      What is the least you want to spend? <input type="number" name="poor" min="0" max="100000000" placeholder="<%= settings.min %>"/><br />
-      What is the most you would be willing to spend? <input type="number" name="rich" min="1" max="100000000" placeholder="<%= settings.max %>"/><br />
-      Which of these features interests you?<br />
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th>Your Response</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>How many bedrooms do you want?</td>
+            <td><input class="input-dim" type="number" name="beds" min="0" max="25" placeholder="<%= settings.beds %>"/></td>
+          </tr>
+          <tr>
+            <td>How many bathrooms do you want? </td>
+            <td> <input class="input-dim" type="number" name="baths" min="0" max="25" placeholder="<%= settings.baths %>"/></td>
+          </tr>
+          <tr>
+            <td>How large of a house do you want (in sq ft.)?</td>
+            <td>  <input class="input-dim" type="number" name="sqft" min="0" max="1000000" placeholder="<%= settings.sqft %>"/></td>
+          </tr>
+          <tr>
+            <td>What is the least you want to spend? </td>
+            <td><input class="input-dim" type="number" name="poor" min="0" max="100000000" placeholder="<%= settings.min %>"/></td>
+          </tr>
+          <tr>
+            <td> What is the most you would be willing to spend? </td>
+            <td><input class="input-dim" type="number" name="rich" min="1" max="100000000" placeholder="<%= settings.max %>"/></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      Which of these features interests you?
       <input type="checkbox" name="car" value="true" <% if(settings.garage) {%><%= 'checked' %><% } else { %><%= '' %><% } %> /> Garage<br />
       <input type="checkbox" name="grass" value="true" <% if(settings.yard) {%><%= 'checked' %><% } else { %><%= '' %><% } %> /> Yard<br />
       <input type="checkbox" name="fire" value="true" <% if(settings.fire) {%><%= 'checked' %><% } else { %><%= '' %><% } %> /> Fireplace<br />
