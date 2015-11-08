@@ -89,7 +89,7 @@ export function express_router(app, router) {
           method: 'GET'
         };
         retslyGrunt(optionsR, function(fRes) {
-          res.render('tenant.html', { img1: fRes.bundle[0].media });
+          res.render('tenant.html', { img1: fRes.bundle[0].media[0].url });
         });
       });
     });
