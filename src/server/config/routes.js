@@ -25,6 +25,16 @@ export function express_router(app, router) {
     // db_prep(client, populate);
   });
 
+  router.get('/details', (req, res) => {
+    console.log('***** Getting details path *****');
+    res.render('details.html');
+  });
+
+  router.get('/help', (req, res) => {
+    console.log('***** Getting help path *****');
+    res.render('help.html');
+  });
+
   router.get('/tenant', (req, res) => {
     console.log('***** Getting route path *****');
     
