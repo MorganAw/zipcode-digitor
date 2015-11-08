@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "rm -rf build/compiled && rm -f static/packed.js",
     "deploy": "npm run clean && npm run build",
-    "build": "./node_modules/.bin/babel src -d ./build/compiled && webpack",
+    "build": "./node_modules/.bin/babel src -d ./build/compiled",
     "local": "npm run clean && npm run build && node build/compiled/server/server.js",
     "start": "npm run clean && npm run build && node build/compiled/server/server.js"
   },
@@ -13,23 +13,10 @@
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
     "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "history": "^1.13.0",
-    "jade": "^1.11.0",
-    "passport": "^0.3.0",
-    "passport-local": "^1.0.0",
     "pg": "^4.4.3",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "react-gmaps": "^1.0.4",
-    "react-google-maps": "^4.2.0",
-    "react-googlemaps": "^0.4.0",
-    "react-image-gallery": "^0.4.8",
-    "react-router": "^1.0.0-rc3",
-    "react-simpletabs": "^0.7.0",
-    "reactify": "^1.1.1",
-    "serve-favicon": "^2.3.0",
-    "webpack": "^1.12.2"
+    "serve-favicon": "^2.3.0"
   },
   "contributors": [
     {

@@ -1,8 +1,4 @@
 // Import React
-import React                         from 'react';
-import { renderToString }            from 'react-dom/server';
-import { match, RoutingContext }     from 'react-router';
-import react_routes                  from '../../shared/react_routes';
 import { secrets }                   from './secrets';
 import { retslyGrunt }               from './retslyGrunt';
 
@@ -19,19 +15,26 @@ export function express_router(app, router) {
   var conString = "postgres://maw-bsky@localhost/retsly_hackathon";
   var client = new pg.Client(conString);
 
-  // API endpoints
-  // router.post('/save_tprofile', (req, res) => {
-  //   save_tprofile(req, res, client, (results) => {
-  //     console.log(results);
-  //     //return results;
-  //   });
-  // });
-
+  /* -----=== API ENDPOINTS BELOW HERE ===----- */
   // Root path
   router.get('/', (req, res) => {
     console.log('***** Getting route path *****');
-    react_routing(req, res);
+    res.render('index.html');
     // db_prep(client, populate);
+  });
+
+  router.get('/details', (req, res) => {
+    console.log('***** Getting details path *****');
+    res.render('details.html');
+  });
+
+  router.get('/tenant', (req, res) => {
+    console.log('***** Getting route path *****');
+    res.render('tenant.html');
+  });
+
+  router.get('/owner', (req, res) => {
+    console.log('***** Getting owner route path *****');
   });
 
   // Heroku postgres connection
@@ -47,92 +50,63 @@ export function express_router(app, router) {
   //   });
   // });
 
-
-  router.get('/how_it_works', (req, res) => {
-    console.log('***** Getting how_it_works path *****');
-    react_routing(req, res);
+  /* -----=== API ENDPOINTS BELOW HERE ===----- */
+  // Save user profile endpoint
+  /*
+  router.post('/save_tprofile', (req, res) => {
+    save_tprofile(req, res, client, (results) => {
+      console.log(results);
+      //return results;
+    });
   });
+  */
 
-  router.get('/details', (req, res) => {
-    console.log('***** Getting details path *****');
-    react_routing(req, res);
-  });
-
-  router.get('/tenant', (req, res) => {
-    console.log('***** Getting route path *****');
-    react_routing(req, res);
-  });
-
-  var finalR;
   // call to API for listings
   router.post('/get_listings', (req, res) => {
-      if (req.body.value){
-          let value = req.body.value;
-          let optionsG = {
-              hostname: 'maps.googleapis.com',
-              port: 443,
-              path: '/maps/api/geocode/json?address='+encodeURIComponent(value),
-              method: 'GET'
+    var finalR;
+    if (req.body.value){
+      let value = req.body.value;
+      let optionsG = {
+        hostname: 'maps.googleapis.com',
+        port: 443,
+        path: '/maps/api/geocode/json?address='+encodeURIComponent(value),
+        method: 'GET'
+      };
+      // Prepare the AJAX call
+      var ajaxG = https.request(optionsG, (resA) => {
+        resA.setEncoding('utf8');
+        var response = '';
+        resA.on('data', (d) => {
+          response += d;
+        });
+        resA.on('end', () => {
+          let geoCodes = JSON.parse(response);
+          let lat = geoCodes['results'][0]['geometry']['location']['lat'];
+          let long = geoCodes['results'][0]['geometry']['location']['lng'];
+          let optionsR = {
+            hostname: 'rets.io',
+            port: 443,
+            path: '/api/v1/test/listings?access_token='+secrets.SERVER_TOKEN+
+                  '&limit=2&near='+ lat +','+ long +'&radius=60mi',
+            method: 'GET'
           };
-          // Prepare the AJAX call
-          var ajaxG = https.request(optionsG, (resA) => {
-            resA.setEncoding('utf8');
-            var response = '';
-            resA.on('data', (d) => {
-                response += d;
-            });
-            resA.on('end', () => {
-              let geoCodes = JSON.parse(response);
-              let lat = geoCodes['results'][0]['geometry']['location']['lat'];
-              let long = geoCodes['results'][0]['geometry']['location']['lng'];
-              let optionsR = {
-                  hostname: 'rets.io',
-                  port: 443,
-                  path: '/api/v1/test/listings?access_token='+secrets.SERVER_TOKEN+
-                        '&limit=2&near='+ lat +','+ long +'&radius=60mi',
-                  method: 'GET'
-              };
-              retslyGrunt(optionsR, function(fRes) {
-                  finalR = fRes;
-                  console.log("FINAL RES1: ", finalR)
-              });
-            });
+          retslyGrunt(optionsR, function(fRes) {
+              finalR = fRes;
           });
-          // End AJAX preparation and send
-          ajaxG.end();
+        });
+      });
+      // End AJAX preparation and send
+      ajaxG.end();
 
-          ajaxG.on('error', (e) => {
-            if(e) console.log("GMaps API Error: ", e);
-          })
-      } else {
-          res.send(finalR);
-      }
-  });
-
-  router.get('/tenant', (req, res) => {
-    console.log('***** Getting tenant route path *****');
-    res.render('tenant');
-  });
-
-  router.get('/owner', (req, res) => {
-    console.log('***** Getting owner route path *****');
-    res.render('owner');
+      ajaxG.on('error', (e) => {
+        if(e) console.log("GMaps API Error: ", e);
+      })
+    } else {
+      console.log('finalR: ',finalR);
+        res.render('tenant.html', {finalR});
+    }
   });
 
   // Mount the router on the app
   app.use('/', router);
-
-  function react_routing(req, res) {
-    match({ routes: react_routes, location: req.url }, (error, redirectLocation, renderProps) => {
-      if (error) {
-        res.status(500).send(error.message);
-      } else if (redirectLocation) {
-        res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-      } else if (renderProps) {
-        res.status(200).render('index', { stuff: renderToString(<RoutingContext { ...renderProps } />) });
-      } else {
-        res.status(404).send('Not found');
-      }
-    });
-  };
 }
