@@ -24,6 +24,7 @@
     "react-gmaps": "^1.0.4",
     "react-google-maps": "^4.2.0",
     "react-googlemaps": "^0.4.0",
+    "react-image-gallery": "^0.4.8",
     "react-router": "^1.0.0-rc3",
     "react-simpletabs": "^0.7.0",
     "reactify": "^1.1.1",

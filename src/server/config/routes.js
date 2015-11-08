@@ -60,6 +60,7 @@ export function express_router(app, router) {
   router.get('/tenant', (req, res) => {
     console.log('***** Getting route path *****');
     react_routing(req, res);
+  });
 
   // call to API for listings
   router.post('/get_listings', (req, res) => {
