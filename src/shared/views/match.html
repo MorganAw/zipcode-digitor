@@ -15,8 +15,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
 </head>
-<body class="landing-page">
-      <nav class="navbar navbar-default navbar-static-top navbar-background" role="navigation">
+<body>
+  <nav class="navbar navbar-default navbar-static-top navbar-tenant" role="navigation">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -29,37 +29,15 @@
           </div>
           <div class="row">
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav pull-right">
-              <li id="listing"><a href="/tenant">Post a Listing</a></li>
-              <li><a href="/details">Help</a></li>
-              <li><a href="/tenant">Sign Up</a></li>
-              <li><a href="/tenant">Login</a></li>
+            <ul class="nav navbar-nav pull-right tenant-menu">
+              <li><a href="/details">Inbox</a></li>
+              <li><a href="/tenant">Saved List</a></li> 
+              <li><a href="/tenant">Profile</a></li>
+              <li><a href="/tenant">Preferences</a></li>
             </ul>
           </div>
           </div>
         </div>
-      </nav>
-      <div class="col-xs-12">
-        <div class="text-branding">Find Your Apartment</div>
-      </div>
-      <div class="col-xs-12">
-        <div class="how-it-works">
-          <a href="/how_it_works"><span>How It Works</span></a>
-        </div>
-      </div>
-      <div class="col-xs-8 col-xs-offset-2 search-bar">
-
-      <div class="input-group">
-    
-        <form method="post" action="/get_listings">
-          <input type="text" class="form-control search-bar-height" placeholder="Where do you want to live?" name="location" />
-            <span class="input-group-btn">
-              <input class="btn btn-default red-button search-bar-height" type="submit">Search</input>
-            </span>
-        </form>
-
-      </div><!-- /input-group -->
-    </div>
-  <script src="/js/toggle-click.js"></script>
+  </nav>  
 </body>
 </html>
