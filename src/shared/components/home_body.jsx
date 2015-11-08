@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import 
 
 export class HomeBody extends React.Component {
   constructor(props) {
@@ -10,26 +9,47 @@ export class HomeBody extends React.Component {
     console.log('*** Rendering home_body ***');
     return (
       <div>
-      <h2>Test</h2>
-      // <nav class="navbar navbar-default navbar-static-top" role="navigation">
-      //   <div class="container">
-      //     <!-- Brand and toggle get grouped for better mobile display -->
-      //     <div class="navbar-header">
-      //       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      //         <span class="sr-only">Toggle navigation</span>
-      //         <span class="icon-bar"></span>
-      //         <span class="icon-bar"></span>
-      //         <span class="icon-bar"></span>
-      //       </button>
-      //       <a class="navbar-brand" href="#">Accurent</a>
-      //     </div>
-      //   </div>
-      // </nav>
-        <h2>Welcome to MCAws Simple Node Webapp</h2>
-        <p>Looks like stuff is running, time to start experimenting</p>
-
-        <h1>H O M E P A G E B O Y S</h1>
-        <Link to={`/tenant`}>Login</Link>
+        <div className="landing-page">
+          <nav className="navbar navbar-default navbar-static-top navbar-background" role="navigation">
+            <div className="container">
+              <div className="navbar-header">
+                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span className="sr-only">Toggle navigation</span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                </button>
+                <a className="navbar-brand" href="#"><span className="brand-size">Accurent</span></a>
+              </div>
+              <div className="row">
+              <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul className="nav navbar-nav pull-right">
+                  <li id="listing"><Link to={`/tenant`}>Post a Listing</Link></li>
+                  <li><Link to={`/tenant`}>Help</Link></li>
+                  <li><Link to={`/tenant`}>Sign Up</Link></li> 
+                  <li><Link to={`/tenant`}>Login</Link></li>
+                </ul>
+              </div>
+              </div> 
+            </div>
+          </nav>
+          <div className="col-xs-12">
+            <div className="text-branding">Find Your Apartment</div>
+          </div>
+          <div className="col-xs-12">
+            <div className="how-it-works">
+              How It Works
+            </div>
+          </div>
+          <div className="col-xs-8 col-xs-offset-2 search-bar">
+            <div className="input-group">
+              <input type="text" className="form-control search-bar-height" placeholder="Where do you want to live?"></input>
+                <span className="input-group-btn">
+                  <button className="btn btn-default red-button search-bar-height" type="button">Search</button>
+                </span>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
