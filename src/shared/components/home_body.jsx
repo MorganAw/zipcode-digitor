@@ -1,7 +1,6 @@
 import React      from 'react';
 import { Link }   from 'react-router';
 
-export var homeResults = {};
 export class HomeBody extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +24,6 @@ export class HomeBody extends React.Component {
         request.open('POST', 'http://127.0.0.1:8080/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
 
         request.onload = () => {
-            homeResults = request.response;
         }.bind(this);
 
         request.onerror = (xhr, status, err) => {
@@ -65,7 +63,7 @@ export class HomeBody extends React.Component {
                 <ul className="nav navbar-nav pull-right">
                   <li id="listing"><Link to={`/tenant`}>Post a Listing</Link></li>
                   <li><Link to={`/details`}>Help</Link></li>
-                  <li><Link to={`/tenant`}>Sign Up</Link></li> 
+                  <li><Link to={`/tenant`}>Sign Up</Link></li>
 
                   <li><Link to={`/tenant`}>Login</Link></li>
                 </ul>

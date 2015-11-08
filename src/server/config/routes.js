@@ -94,6 +94,7 @@ export function express_router(app, router) {
               };
               retslyGrunt(optionsR, function(fRes) {
                   finalR = fRes;
+                  console.log("FINAL RES1: ", finalR)
               });
             });
           });
@@ -104,12 +105,9 @@ export function express_router(app, router) {
             if(e) console.log("GMaps API Error: ", e);
           });
       } else {
+          console.log("FINAL RES2: ", finalR)
           res.send(finalR);
       }
-
-      ajaxG.on('error', (e) => {
-        if(e) console.log("GMaps API Error: ", e);
-      });
   });
 
   router.get('/tenant', (req, res) => {

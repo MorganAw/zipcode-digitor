@@ -1,5 +1,4 @@
 import React from 'react';
-import homeResults from './home_body';
 
 export class Listings extends React.Component {
   constructor(props) {
@@ -11,31 +10,26 @@ export class Listings extends React.Component {
       return (this.state.data !== nextState.data);
   }
 
-  loadData() {
-    /*  AJAX REQUEST IN VANILLA JS  */
-    let request = new XMLHttpRequest();
-    request.open('POST', 'http://127.0.0.1:8080/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
-
-    request.onload = () => {
-        this.setState({
-            data: request.response
-        });
-    }.bind(this);
-
-    request.onerror = (xhr, status, err) => {
-      // if xhr request error, write it to console
-      console.error(request.responseURL, status, err.toString());
-    };
-    request.send();  // send HTTP GETrequest
-  }
-
   componentDidMount(){
-      this.loadData();
+      /*  AJAX REQUEST IN VANILLA JS  */
+      let request = new XMLHttpRequest();
+      request.open('POST', 'http://127.0.0.1:8080/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
+
+      request.onload = () => {
+          this.setState({
+              data: request.response.bundle
+          });
+      }.bind(this);
+
+      request.onerror = (xhr, status, err) => {
+        // if xhr request error, write it to console
+        console.error(request.responseURL, status, err.toString());
+      };
+      request.send();  // send HTTP GETrequest
   }
 
   render() {
     console.log('*** Rendering listings ***');
-    this.state.data = homeResults;
     return (
       <div>
         <p>WE LIST NOW</p>
