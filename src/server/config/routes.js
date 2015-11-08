@@ -58,6 +58,16 @@ export function express_router(app, router) {
     });
   })
 
+  router.get('/how_it_works', (req, res) => {
+    console.log('***** Getting how_it_works path *****');
+    react_routing(req, res);
+  });
+
+  router.get('/details', (req, res) => {
+    console.log('***** Getting details path *****');
+    react_routing(req, res);
+  });
+
   router.get('/tenant', (req, res) => {
     console.log('***** Getting route path *****');
     react_routing(req, res);

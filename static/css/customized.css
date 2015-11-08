@@ -59,6 +59,7 @@ div.text-branding{
 	color: white;
 	font-weight: 700;
 	opacity: 0.8;	
+	color: white;
 }
 
 .red-button{
@@ -80,3 +81,21 @@ div.text-branding{
 	height: 2000px;
 	width: 100%;
 };
+
+.how-it-works-content{
+	height: 2000px;
+	width: 500px;
+	position: absolute;
+	display: block;
+	background-color: red;
+}
+
+#white-link{
+	color: white;
+}
+
+#white-link:hover{
+	color: white;
+	opacity: 0.9; 
+	text-decoration: none;
+}

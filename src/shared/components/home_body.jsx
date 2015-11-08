@@ -25,7 +25,7 @@ export class HomeBody extends React.Component {
               <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav pull-right">
                   <li id="listing"><Link to={`/tenant`}>Post a Listing</Link></li>
-                  <li><Link to={`/tenant`}>Help</Link></li>
+                  <li><Link to={`/details`}>Help</Link></li>
                   <li><Link to={`/tenant`}>Sign Up</Link></li> 
                   <li><Link to={`/tenant`}>Login</Link></li>
                 </ul>
@@ -38,7 +38,7 @@ export class HomeBody extends React.Component {
           </div>
           <div className="col-xs-12">
             <div className="how-it-works">
-              How It Works
+              <Link to={`/how_it_works`}><span>How It Works</span></Link>
             </div>
           </div>
           <div className="col-xs-8 col-xs-offset-2 search-bar">
