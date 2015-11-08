@@ -41,7 +41,7 @@
             <ul class="nav navbar-nav pull-right tenant-menu">
               <li><a href="/details">Inbox</a></li>
               <li><a href="/tenant">Saved List</a></li> 
-              <li><a href="/tenant">Profile</a></li>
+              <li><a href="/settings">Profile</a></li>
               <li><a href="/tenant">Preferences</a></li>
             </ul>
           </div>
@@ -132,24 +132,48 @@
       </div>
 <!--       </div>
     </div> -->
+    <div class="mp">
+        <!--  MAP  -->
+        <div id="map" style="height: 500px; width: 500px;"></div>
+
+    </div>
+    <div id="abc">
+      <div id="popupContact">
+        <!-- Contact Us Form -->
+        <form action="#" id="form" method="post" name="form">
+          <img id="close" src="/img/close.png" onclick ="div_hide()">
+          <h2>You Got a Match!</h2>
+          <hr>
+          <p>You and this property have a good match! Reach out to the property owner to ask questions or schedule a tour.
+          <button type="button" class="btn btn-primary popup-btn">
+            <span>Start chat   </span>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn btn-primary popup-btn">
+            <span>Schedule a tour   </span>
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
 <script>
  function deetsTog() {
-
-     var dt = document.getElementById('detail-toggle');
-     console.log("deets: ", dt.classList.contains('toggle'));
-     var d = document.getElementById('details');
-     if (dt.classList.contains('toggle')){
-         console.log("if deets");
-         d.setAttribute('style', '');
-         dt.setAttribute('class','toggled');
-         initMap();
-     } else if (dt.classList.contains('toggled')) {
-         console.log("else deets");
-         d.setAttribute('style', 'display:none;');
-         dt.setAttribute('class','toggle');
-         dt.setAttribute('style', 'color:red;');
-     }
+   var dt = document.getElementById('detail-toggle');
+   console.log("deets: ", dt.classList.contains('toggle'));
+   var d = document.getElementById('details');
+   if (dt.classList.contains('toggle')){
+     console.log("if deets");
+     d.setAttribute('style', '');
+     dt.setAttribute('class','toggled');
+     initMap();
+   } else if (dt.classList.contains('toggled')) {
+     console.log("else deets");
+     d.setAttribute('style', 'display:none;');
+     dt.setAttribute('class','toggle');
+     dt.setAttribute('style', 'color:red;');
+   }
  }
  function initMap() {
   console.log("MAP: ", {lat: <%= lat %>, lng: <%= lng %>});
@@ -187,7 +211,7 @@
     scrollwheel: false,
     // Apply the map style array to the map.
     styles: styleArray,
-    zoom: 10
+    zoom: 12
    });
  }
 

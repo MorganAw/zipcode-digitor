@@ -1,12 +1,22 @@
-export function save_tprofile(req, res, pg, callback) {
-  pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    client.query('SELECT * FROM test_table', function(err, result) {
+export function save_tprofile(data, client, done) {
+  client.query('INSERT INTO t_prefs VALUES ('+
+      '(SELECT id FROM accurent_user WHERE email=\'julian@bloomsky.com\'),'+
+      data.beds+','+
+      data.baths+','+
+      data.sqft+','+
+      '\'Condominium\','+
+      data.poor+','+
+      data.rich+','+
+      data.car+','+
+      data.grass+','+
+      data.fire+','+
+      data.emohut+','+
+      data.emohut_2+');',
+  function(err, result) {
+    if (err) {
+      console.error(err);
+    } else {
       done();
-      if (err) {
-        console.error(err); res.send("Error " + err);
-      } else {
-        callback(result.rows);
-      }
-    });
+    }
   });
 }
