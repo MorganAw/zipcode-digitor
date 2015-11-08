@@ -25,12 +25,12 @@ export function express_router(app, router) {
 
   router.get('/details', (req, res) => {
     console.log('***** Getting details path *****');
-    res.render('details');
+    res.render('details.html');
   });
 
   router.get('/tenant', (req, res) => {
     console.log('***** Getting route path *****');
-    res.render('tenant');
+    res.render('tenant.html');
   });
 
   router.get('/owner', (req, res) => {
@@ -63,48 +63,42 @@ export function express_router(app, router) {
 
   // call to API for listings
   router.post('/get_listings', (req, res) => {
-    var finalR;
-    if (req.body.value){
-      let value = req.body.value;
-      let optionsG = {
-        hostname: 'maps.googleapis.com',
-        port: 443,
-        path: '/maps/api/geocode/json?address='+encodeURIComponent(value),
-        method: 'GET'
-      };
-      // Prepare the AJAX call
-      var ajaxG = https.request(optionsG, (resA) => {
-        resA.setEncoding('utf8');
-        var response = '';
-        resA.on('data', (d) => {
-          response += d;
-        });
-        resA.on('end', () => {
-          let geoCodes = JSON.parse(response);
-          let lat = geoCodes['results'][0]['geometry']['location']['lat'];
-          let long = geoCodes['results'][0]['geometry']['location']['lng'];
-          let optionsR = {
-            hostname: 'rets.io',
-            port: 443,
-            path: '/api/v1/test/listings?access_token='+secrets.SERVER_TOKEN+
-                  '&limit=2&near='+ lat +','+ long +'&radius=60mi',
-            method: 'GET'
-          };
-          retslyGrunt(optionsR, function(fRes) {
-              finalR = fRes;
-          });
+    let value = req.body.location;
+    let optionsG = {
+      hostname: 'maps.googleapis.com',
+      port: 443,
+      path: '/maps/api/geocode/json?address='+encodeURIComponent(value),
+      method: 'GET'
+    };
+    // Prepare the AJAX call
+    var ajaxG = https.request(optionsG, (resA) => {
+      resA.setEncoding('utf8');
+      var response = '';
+      resA.on('data', (d) => {
+        response += d;
+      });
+      resA.on('end', () => {
+        let geoCodes = JSON.parse(response);
+        let lat = geoCodes['results'][0]['geometry']['location']['lat'];
+        let long = geoCodes['results'][0]['geometry']['location']['lng'];
+        let optionsR = {
+          hostname: 'rets.io',
+          port: 443,
+          path: '/api/v1/test/listings?access_token='+secrets.SERVER_TOKEN+
+                '&limit=2&near='+ lat +','+ long +'&radius=60mi',
+          method: 'GET'
+        };
+        retslyGrunt(optionsR, function(fRes) {
+          res.render('tenant.html', { img1: fRes.bundle[0].media });
         });
       });
-      // End AJAX preparation and send
-      ajaxG.end();
+    });
+    // End AJAX preparation and send
+    ajaxG.end();
 
-      ajaxG.on('error', (e) => {
-        if(e) console.log("GMaps API Error: ", e);
-      })
-    } else {
-      console.log('finalR: ',finalR);
-        res.render('tenant.html', {finalR});
-    }
+    ajaxG.on('error', (e) => {
+      if(e) console.log("GMaps API Error: ", e);
+    })
   });
 
   // Mount the router on the app
