@@ -1,13 +1,8 @@
-# simple-node-webapp
-Simple Webapp using Express, React, Babel, and Webpack. Meant to be used as super-simplistic boilerplate for experimenting and stuff.
+# Accurent Housing App!
+Accurent was an app created for the zipCode hackathon. It was envisioned as a way to help match renters and rentees based on price range compatibility. Helping both parties involved reduce the time spent in finding the perfect house by providing a compatibility score based on a variety of factors.
 
-... I should probably mention that it's isomorphic as well.
-
-## How to run
-Pull/Download repository
-
-```Not quite sure what git command will do this for you```
-
-Running the app
-
-```$ npm run local```
+## Collaborators
+Julian Ignaczak
+Morgan Aw
+Varun Gampa
+Wentao Xu
