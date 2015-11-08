@@ -90,9 +90,9 @@ export function express_router(app, router) {
         };
         retslyGrunt(optionsR, function(fRes) {
           res.render('tenant.html', {
-              img1: fRes.bundle[0].media[0].url,
-              lat: fRes.bundle[0].coordinates[0],
-              lng: fRes.bundle[0].coordinates[1],
+              media: fRes.bundle[0].media,
+              lng: fRes.bundle[0].coordinates[0],
+              lat: fRes.bundle[0].coordinates[1],
 
           });
         });
