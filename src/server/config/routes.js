@@ -86,8 +86,8 @@ export function express_router(app, router) {
         retslyGrunt(optionsR, function(fRes) {
           res.render('tenant.html', {
               media: fRes.bundle[0].media,
-              lat: fRes.bundle[0].coordinates[0],
-              lng: fRes.bundle[0].coordinates[1],
+              lng: fRes.bundle[0].coordinates[0],
+              lat: fRes.bundle[0].coordinates[1],
           });
         });
       });

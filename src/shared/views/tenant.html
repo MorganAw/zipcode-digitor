@@ -43,11 +43,11 @@
       <div className="container-fluid">
         <div className="row">
           <h1> Suggested Listings for You </h1>
-          <img src="<%= img1 %>"></img>
+          <img src="<%= media[0].url %>"></img>
         </div>
       </div>
     </div>
-    <div class="btn btn-default detail-button"><a href="#detail-toggle" class="toggle" id="detail-toggle" onclick="deetsTog()">Toggle Details</a></div>
+    <div class="btn btn-default detail-button"><a href="#" class="toggle" id="detail-toggle" onclick="deetsTog()">Toggle Details</a></div>
     <div id="details" class="container-fluid">
       <div class="car">
 
@@ -55,26 +55,27 @@
            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
-              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-              <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            <% for(var counter = 0; counter < media.length; counter++) {%>
+              <% if(counter == 0) { %>
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <% } else { %>
+                <li data-target="#carousel-example-generic" data-slide-to="<%= counter %>"></li>
+              <% } %>
+            <% } %>
             </ol>
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-              <div class="item active">
-                <img src="<%= img1 %>" alt="...">
-                <div class="carousel-caption">
-                  ...
-                </div>
-              </div>
-              <div class="item">
-                <img src="<%= img2 %>" alt="...">
-                <div class="carousel-caption">
-                  ...
-                </div>
-              </div>
-
+              <% for(var counter = 0; counter < media.length; counter++) {%>
+                <% if(counter == 0) {%>
+                  <div class="item active">
+                    <img src="<%= media[counter].url %>" alt="img_<%= counter %>">
+                  </div>
+                <% } else { %>
+                  <div class="item">
+                    <img src="<%= media[counter].url %>" alt="img_<%= counter %>">
+                  </div>
+                <% } %>
+              <% } %>
             </div>
             <!-- Controls -->
             <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -89,7 +90,7 @@
       </div>
       <div class="mp">
           <!--  MAP  -->
-          <div id="map"></div>
+          <div id="map" style="height: 500px; width: 500px;"></div>
 
       </div>
     </div>
@@ -105,12 +106,12 @@
      var dt = document.getElementById('detail-toggle');
      console.log("deets: ", dt.classList.contains('toggle'));
      var d = document.getElementById('details');
-     if (dt.className == 'toggle'){
+     if (dt.classList.contains('toggle')){
          console.log("if deets");
          d.setAttribute('style', '');
          dt.setAttribute('class','toggled');
          initMap();
-     } else if (dt.className == 'toggled') {
+     } else if (dt.classList.contains('toggled')) {
          console.log("else deets");
          d.setAttribute('style', 'display:none;');
          dt.setAttribute('class','toggle');
@@ -118,39 +119,43 @@
      }
  }
  function initMap() {
-      console.log("MAP: ", {lat: <%= lat %>, lng: <%= lng %>});
-     var myLatLng = {lat: <%= lat %>, lng: <%= lng %>};
-     // Specify features and elements to define styles.
-     var styleArray = [
-      {
-        featureType: "all",
-        stylers: [
-         { saturation: -80 }
-        ]
-      },{
-        featureType: "road.arterial",
-        elementType: "geometry",
-        stylers: [
-          { hue: "#00ffee" },
-          { saturation: 50 }
-        ]
-      },{
-        featureType: "poi.business",
-        elementType: "labels",
-        stylers: [
-          { visibility: "off" }
-        ]
-      }
-     ];
+  console.log("MAP: ", {lat: <%= lat %>, lng: <%= lng %>});
+   var myLatLng = {lat: <%= lat %>, lng: <%= lng %>};
+   // Specify features and elements to define styles.
+   var styleArray = [
+    {
+      featureType: "all",
+      stylers: [
+       { saturation: -80 }
+      ]
+    },{
+      featureType: "road.arterial",
+      elementType: "geometry",
+      stylers: [
+        { hue: "#00ffee" },
+        { saturation: 50 }
+      ]
+    },{
+      featureType: "poi.business",
+      elementType: "labels",
+      stylers: [
+        { visibility: "off" }
+      ]
+    }
+   ];
 
-     // Create a map object and specify the DOM element for display.
-     var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: <%= lat %>, lng: <%= lng %>},
-      scrollwheel: false,
-      // Apply the map style array to the map.
-      styles: styleArray,
-      zoom: 8
-     });
+   // Create a map object and specify the DOM element for display.
+   var map = new google.maps.Map(document.getElementById('map'), {
+    center: new google.maps.LatLng(<%= lat %>, <%= lng %>),
+    zoom: 2,
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    maxZoom: 14,
+    minZoom: 2,
+    scrollwheel: false,
+    // Apply the map style array to the map.
+    styles: styleArray,
+    zoom: 10
+   });
  }
 
 </script>
