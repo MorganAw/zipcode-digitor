@@ -179,5 +179,30 @@ div.text-branding{
 	margin-top: 20px;
 	width: 200px;
 	height: 50px;
-
 }
+
+.display-area{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 80%;
+}
+
+
+.tabContent{
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+#photos{
+	display: block;
+}
+
+#map{
+	height: 600px;
+	width: 1000px;
+	margin-left: 100px;
+}
+

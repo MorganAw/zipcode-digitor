@@ -66,7 +66,14 @@
   </div>
   <div class="display-area">
     <div class="tabContent" id="tabs-1">
-      Photos
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <img src="http://imgsrv.legends1027.com/image/wlgz/UserFiles/Image/Wiki%20Corner/golden%20gate%20bridge.jpg">
+          </div>
+        </div>
+      </div>  
     </div>
     <div class="tabContent" id="tabs-2">
       <div id="map">
@@ -108,13 +115,11 @@
      
 function showStuff(element)  {
     var tabContents = document.getElementsByClassName('tabContent');
-    console.log(tabContents);
     for (var i = 0; i < tabContents.length; i++) { 
         tabContents[i].style.display = 'none';
     }
     // change tabsX into tabs-X in order to find the correct tab content
     var tabContentIdToShow = element.id.replace(/(\d)/g, '-$1');
-    console.log(tabContentIdToShow);
     document.getElementById(tabContentIdToShow).style.display = 'block';
 }
      </script>
