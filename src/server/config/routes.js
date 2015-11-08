@@ -28,6 +28,11 @@ export function express_router(app, router) {
     res.render('details.html');
   });
 
+  router.get('/help', (req, res) => {
+    console.log('***** Getting help path *****');
+    res.render('help.html');
+  });
+
   router.get('/tenant', (req, res) => {
     console.log('***** Getting route path *****');
     res.render('tenant.html');

@@ -149,6 +149,7 @@ div.text-branding{
 
 .glyphicon-heart {
     font-size: 40px;
+    color: red;
 }
 
 .glyphicon-user{
@@ -200,4 +201,39 @@ div.text-branding{
 	display: block;
 }
 
+#help-container{
+	position: absolute;
+	left: 0;
+	top: 10%;
+	width: 100%;
+	height: 90%;
+}
 
+#help-header{
+	text-align: center;
+	margin-top: 20%;
+	font-size: 60px;
+}
+
+#help-gra1{
+	margin-top: 100px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#help-gra2{
+	margin-top: 100px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#search-input{
+	width: 80%;
+	float: left;
+}
+#search-bar{
+	width: 18%;
+	float: left;
+}

@@ -14,3 +14,14 @@ document.getElementById('abc').style.display = "block";
 function div_hide(){
 document.getElementById('abc').style.display = "none";
 }
+
+//Function To Display Popup
+var ctr = 0;
+function div_show2() {
+	console.log("hey");
+document.getElementById('xyz').style.display = "block";
+}
+//Function to Hide Popup
+function div_hide2(){
+document.getElementById('xyz').style.display = "none";
+}
