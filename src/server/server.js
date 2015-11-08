@@ -1,6 +1,5 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import passport from 'passport';
 import favicon from 'serve-favicon';
 
 // Import self-generated methods
@@ -11,7 +10,8 @@ var router = express.Router();
 
 // Configure Jade
 app.set('views', './src/shared/views');
-app.set('view engine', 'jade');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
 // Set static & favicon paths
 app.use(express.static(__dirname+'/../../../static'));
