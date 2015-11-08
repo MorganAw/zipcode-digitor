@@ -11,24 +11,25 @@ export class Listings extends React.Component {
   }
 
   componentDidMount(){
-      /*  AJAX REQUEST IN VANILLA JS  */
-      let request = new XMLHttpRequest();
-      request.open('POST', 'http://127.0.0.1:8080/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
+    /*  AJAX REQUEST IN VANILLA JS  */
+    let request = new XMLHttpRequest();
+    request.open('POST', 'http://127.0.0.1:8080/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
 
-      request.onload = () => {
-          this.setState({
-              data: request.response.bundle
-          });
-      }.bind(this);
+    request.onload = () => {
+        this.setState({
+            data: JSON.parse(request.response).bundle
+        });
+    }.bind(this);
 
-      request.onerror = (xhr, status, err) => {
-        // if xhr request error, write it to console
-        console.error(request.responseURL, status, err.toString());
-      };
-      request.send();  // send HTTP GETrequest
+    request.onerror = (xhr, status, err) => {
+      // if xhr request error, write it to console
+      console.error(request.responseURL, status, err.toString());
+    };
+    request.send();  // send HTTP GETrequest
   }
 
   render() {
+    console.log('Listings state at render: ', this.state);
     console.log('*** Rendering listings ***');
     return (
       <div>
@@ -44,6 +45,7 @@ class SingleListing extends React.Component {
     super(props);
   }
   render() {
+    console.log('Single Listing props: ', this.props);
     console.log('** Rendering single listing ** ');
     return (
       <div>L I S T I N G B O Y S {this.props.data}</div>
