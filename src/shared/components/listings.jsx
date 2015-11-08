@@ -47,8 +47,9 @@ class SingleListing extends React.Component {
   render() {
     console.log('Single Listing props: ', this.props);
     console.log('** Rendering single listing ** ');
+    let image = this.props.data[0].media[0].url;
     return (
-      <div>L I S T I N G B O Y S {this.props.data}</div>
+      <div>L I S T I N G B O Y S</div>
     );
   }
 };

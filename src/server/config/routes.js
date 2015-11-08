@@ -111,12 +111,12 @@ export function express_router(app, router) {
 
   router.get('/tenant', (req, res) => {
     console.log('***** Getting tenant route path *****');
-    react_routing(req, res);
+    res.render('tenant');
   });
 
   router.get('/owner', (req, res) => {
     console.log('***** Getting owner route path *****');
-    react_routing(req, res);
+    res.render('owner');
   });
 
   // Mount the router on the app

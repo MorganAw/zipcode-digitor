@@ -124,7 +124,7 @@ var App = React.createClass({
         </Tabs.Panel>
         <Tabs.Panel title = 'Features'>
           <h2>Features here </h2>
-        </Tabs.Panel> 
+        </Tabs.Panel>
       </Tabs>
     );
   }
@@ -136,7 +136,7 @@ export class Details extends React.Component {
     super(props);
   }
   render() {
-    console.log('*** Rendering home_body ***');
+    console.log('*** Rendering details_body ***');
     return (
        <div id="wrapper">
         <div id="sidebar-wrapper">
