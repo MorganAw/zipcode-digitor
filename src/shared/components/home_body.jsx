@@ -1,12 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React      from 'react';
+import { Link }   from 'react-router';
 
+export var homeResults = {};
 export class HomeBody extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {value: 'Where do you want to live?'};
   }
+
+  shouldCompontentUpdate(nextProps, nextState){
+      return (this.state.value !== nextState.value);
+  }
+
+  initSearch() {
+    let getListisngs = {
+        value: this.state.value
+    };
+    console.log("POSTING: ", getListisngs);
+    if ((this.state.value !== null)&&(this.state.value !== undefined)){
+        /*  AJAX REQUEST IN VANILLA JS  */
+        let request = new XMLHttpRequest();
+        request.open('POST', 'http://127.0.0.1:8000/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
+
+        request.onload = () => {
+            homeResults = request.response;
+        }.bind(this);
+
+        request.onerror = (xhr, status, err) => {
+          // if xhr request error, write it to console
+          console.error(request.responseURL, status, err.toString());
+        };
+        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');  // set http header for POST
+        request.send(JSON.stringify(getListisngs));
+    }
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
   render() {
     console.log('*** Rendering home_body ***');
+    let value = this.state.value;
+
     return (
       <div>
         <div className="landing-page">
@@ -27,10 +63,11 @@ export class HomeBody extends React.Component {
                   <li id="listing"><Link to={`/tenant`}>Post a Listing</Link></li>
                   <li><Link to={`/details`}>Help</Link></li>
                   <li><Link to={`/tenant`}>Sign Up</Link></li> 
+
                   <li><Link to={`/tenant`}>Login</Link></li>
                 </ul>
               </div>
-              </div> 
+              </div>
             </div>
           </nav>
           <div className="col-xs-12">
@@ -43,9 +80,9 @@ export class HomeBody extends React.Component {
           </div>
           <div className="col-xs-8 col-xs-offset-2 search-bar">
             <div className="input-group">
-              <input type="text" className="form-control search-bar-height" placeholder="Where do you want to live?"></input>
+              <input type="text" className="form-control search-bar-height" value={value} onChange={this.handleChange.bind(this)} />
                 <span className="input-group-btn">
-                  <button className="btn btn-default red-button search-bar-height" type="button">Search</button>
+                  <button className="btn btn-default red-button search-bar-height" type="button" onClick={this.initSearch.bind(this)}>Search</button>
                 </span>
             </div>
           </div>

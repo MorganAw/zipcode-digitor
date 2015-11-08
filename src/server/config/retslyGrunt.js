@@ -1,24 +1,24 @@
 import https from 'https';
 
-export function retslyGrunt(options, done) {
+export function retslyGrunt(optionsR, value, done) {
   console.log('** Retsly grunt doing work **');
 
   // Prepare the AJAX call
-  var ajax = https.request(options, (res) => {
+  var ajaxR = https.request(optionsR, (res) => {
     res.setEncoding('utf8');
-    var response = '';
+    var finalRes = '';
     res.on('data', (d) => {
-        response += d;
+        finalRes += d;
     });
     res.on('end', () => {
-      let user = JSON.parse(response);
-      done(response);
-  });
+      let user = JSON.parse(finalRes);
+      done(finalRes);
+    });
   });
   // End AJAX preparation and send
-  ajax.end();
+  ajaxR.end();
 
-  ajax.on('error', (e) => {
+  ajaxR.on('error', (e) => {
     if(e) console.log("Retsly Grunt Error: ", e);
   });
 }
