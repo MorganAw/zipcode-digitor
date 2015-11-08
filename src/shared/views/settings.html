@@ -17,19 +17,18 @@
 </head>
 <body>
   <div>
-    <form action="/save_tsettings/" method="post">
-      WHERE YOU WANT TO LIVE? <input type="text" /><br />
-      HOW MANY BEDS YOU WANT? <input type="number" name="beds" min="0" max="25" /><br />
-      HOW MANY BATHS YOU WANT? <input type="number" name="baths" min="0" max="25" /><br />
-      HOW MANY SQUARE FEET YOU WANT? <input type="number" name="sqft" min="0" max="1000000" /><br />
-      HOW FUCKING POOR ARE YOU? <input type="number" name="poor" min="0" max="100000000" /><br />
-      HOW FUCKING RICH ARE YOU? <input type="number" name="rich" min="1" max="100000000" /><br />
-      WHAT STUPID FEATURES DO YOU WANT?<br />
-      <input type="checkbox" name="car" /> Garage<br />
-      <input type="checkbox" name="grass" /> Yard<br />
-      <input type="checkbox" name="fire" /> Fireplace<br />
-      <input type="checkbox" name="emohut" /> Basement<br />
-      <input type="checkbox" name="emohut_2" /> Attic<br />
+    <form action="/save_tsettings" method="post">
+      How many bedrooms do you want? <input type="number" name="beds" min="0" max="25" placeholder="<%= settings.beds %>"/><br />
+      How many bathrooms do you want? <input type="number" name="baths" min="0" max="25" placeholder="<%= settings.baths %>"/><br />
+      How large of a house do you want (in sq ft.)? <input type="number" name="sqft" min="0" max="1000000" placeholder="<%= settings.sqft %>"/><br />
+      What is the least you want to spend? <input type="number" name="poor" min="0" max="100000000" placeholder="<%= settings.min %>"/><br />
+      What is the most you would be willing to spend? <input type="number" name="rich" min="1" max="100000000" placeholder="<%= settings.max %>"/><br />
+      Which of these features interests you?<br />
+      <input type="checkbox" name="car" value="true" <% if(settings.garage) {%><%= 'checked' %><% } else { %><%= '' %><% } %> /> Garage<br />
+      <input type="checkbox" name="grass" value="true" <% if(settings.yard) {%><%= 'checked' %><% } else { %><%= '' %><% } %> /> Yard<br />
+      <input type="checkbox" name="fire" value="true" <% if(settings.fire) {%><%= 'checked' %><% } else { %><%= '' %><% } %> /> Fireplace<br />
+      <input type="checkbox" name="emohut" value="true" <% if(settings.basement) {%><%= 'checked' %><% } else { %><%= '' %><% } %> /> Basement<br />
+      <input type="checkbox" name="emohut_2" value="true" <% if(settings.attic) {%><%= 'checked' %><% } else { %><%= '' %><% } %> /> Attic<br />
       <input type='submit' value='SAVE' />
     </form>
   </div>

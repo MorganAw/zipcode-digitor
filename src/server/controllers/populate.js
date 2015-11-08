@@ -73,7 +73,6 @@ export function populate(client) {
       if(err) {
         return console.error('error running query', err);
       }
-      client.end();
     });
 //  });
 };

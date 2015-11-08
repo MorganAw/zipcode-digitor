@@ -9,11 +9,13 @@ import https                         from 'https';
 // Import controllers
 import { save_tprofile }             from '../controllers/save_tprofile';
 import { db_prep }                   from '../controllers/db_prep';
-import { populate }                   from '../controllers/populate';
+import { populate }                  from '../controllers/populate';
+import { settings_query }            from '../controllers/settings_query';
 
 export function express_router(app, router) {
   var conString = "postgres://maw-bsky@localhost/retsly_hackathon";
   var client = new pg.Client(conString);
+  var house_data;
 
   /* -----=== API ENDPOINTS BELOW HERE ===----- */
   // Root path
@@ -42,6 +44,13 @@ export function express_router(app, router) {
     console.log('***** Getting owner route path *****');
   });
 
+  router.get('/settings', (req, res) => {
+    settings_query(client, (result) => {
+      console.log('passed result to render function');
+      res.render('settings.html', { settings: result });
+    });
+  });
+
   // Heroku postgres connection
   // router.get('/db', function (req, res) {
   //   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -56,15 +65,18 @@ export function express_router(app, router) {
   // });
 
   /* -----=== API ENDPOINTS BELOW HERE ===----- */
-  // Save user profile endpoint
-  /*
-  router.post('/save_tprofile', (req, res) => {
-    save_tprofile(req, res, client, (results) => {
-      console.log(results);
-      //return results;
-    });
+  // Save user profile endpoint  
+  router.post('/save_tsettings', (req, res) => {
+    // save_tprofile(req.body, client, () => {
+    //   res.render('tenant.html', { media: house_data.bundle[0].media,
+    //           lng: house_data.bundle[0].coordinates[0],
+    //           lat: house_data.bundle[0].coordinates[1], });
+    // });
+    res.render('tenant.html', { media: house_data.bundle[0].media,
+              lng: house_data.bundle[0].coordinates[0],
+              lat: house_data.bundle[0].coordinates[1], });
   });
-  */
+  
 
   // call to API for listings
   router.post('/get_listings', (req, res) => {
@@ -94,7 +106,8 @@ export function express_router(app, router) {
           method: 'GET'
         };
         retslyGrunt(optionsR, function(fRes) {
-          res.render('tenant.html', {
+          house_data = fRes;
+          res.render('settings.html', {
               media: fRes.bundle[0].media,
               lng: fRes.bundle[0].coordinates[0],
               lat: fRes.bundle[0].coordinates[1],
