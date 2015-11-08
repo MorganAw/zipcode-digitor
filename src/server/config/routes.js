@@ -2,6 +2,8 @@ import React                         from 'react';
 import { renderToString }            from 'react-dom/server';
 import { match, RoutingContext }     from 'react-router';
 import react_routes                  from '../../shared/react_routes';
+import { secrets }                   from './secrets';
+import { retslyGrunt }               from './retslyGrunt';
 
 import pg from 'pg';
 import util from 'util';
@@ -13,8 +15,18 @@ export function express_router(app, router) {
   });
 
   router.get('/get_listings', (req, res) => {
-
-  });  
+      let options = {
+          hostname: 'rets.io',
+          port: 443,
+          path: '/api/v1/test/listings?access_token='+secrets.SERVER_TOKEN+
+                '&limit=2&near=-122.395743,37.793662&radius=10mi',
+          method: 'GET'
+      };
+      console.log("OPTIONS: ", options);
+      retslyGrunt(options, function(response) {
+          res.render(response);
+      });
+  });
 
   // Root path
   router.get('/', (req, res) => {
@@ -43,6 +55,7 @@ export function express_router(app, router) {
     console.log('***** Getting route path *****');
     react_routing(req, res);
   });
+
   // Mount the router on the app
   app.use('/', router);
 
