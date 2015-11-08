@@ -7,25 +7,13 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    
-
-    <!-- Personal CSS Libraries -->
     <link rel="stylesheet" href="/css/customized.css">
     <link rel="stylesheet" href="/css/simple-sidebar.css">
     <link rel="stylesheet" href="/css/details.css">
     <link rel="stylesheet" href="/css/image-gallery.css">
-    <link rel="stylesheet" href="/css/popup.css">
-
-
-    <!-- Third Party JS Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
-
-    <!-- Personal JS Libraries -->
-    <script src="/js/popup.js"></script>
-    <script src="/js/show_details.js"></script>
-
 </head>
 <body>
   <nav class="navbar navbar-default navbar-static-top navbar-tenant" role="navigation">
@@ -51,40 +39,5 @@
           </div>
         </div>
   </nav>  
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="<%= img1 %>" onclick="show_details()">
-        </div>
-      </div>
-  </div>  
-   <!-- Button Container -->
-  <div class="button-container"> 
-    <div class="row">
-      <button type="button" class="btn btn-default btn-lg" id="dislike-button">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      </button>
-      <button type="button" class="btn btn-default btn-lg" id="like-button" onclick="div_show()">
-        <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color:red"></span>
-      </button>
-    </div>
-  </div>
-  <div id="abc">
-  <div id="popupContact">
-<!-- Contact Us Form -->
-  <form action="#" id="form" method="post" name="form">
-  <img id="close" src="/img/close.png" onclick ="div_hide()">
-  <h2>You Got a Match!</h2>
-  <hr>
-  <p>You and this property have a good match! Reach out to the property owner to ask questions or schedule a tour.
-  <button type="button" class="btn btn-primary popup-btn"><span>Start chat   </span>
-    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-  </button>
-  <button type="button" class="btn btn-primary popup-btn"><span>Schedule a tour   </span><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-  </button>
-  </form>
-  </div>
-  </div>
 </body>
 </html>
