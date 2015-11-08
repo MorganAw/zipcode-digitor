@@ -12,6 +12,7 @@ import util                          from 'util';
 // Import controllers
 import { save_tprofile }             from '../controllers/save_tprofile';
 import { db_prep }                   from '../controllers/db_prep';
+import { populate }                   from '../controllers/populate';
 
 export function express_router(app, router) {
   var conString = "postgres://maw-bsky@localhost/retsly_hackathon";
@@ -43,7 +44,7 @@ export function express_router(app, router) {
   router.get('/', (req, res) => {
     console.log('***** Getting route path *****');
     react_routing(req, res);
-    db_prep(client);
+    db_prep(client, populate);
   });
 
   router.get('/db', function (req, res) {
