@@ -25,20 +25,6 @@ export function express_router(app, router) {
     });
   });
 
-  router.get('/get_listings', (req, res) => {
-      let options = {
-          hostname: 'rets.io',
-          port: 443,
-          path: '/api/v1/test/listings?access_token='+secrets.SERVER_TOKEN+
-                '&limit=2&near=-122.395743,37.793662&radius=10mi',
-          method: 'GET'
-      };
-      console.log("OPTIONS: ", options);
-      retslyGrunt(options, function(response) {
-          res.render(response);
-      });
-  });
-
   // Root path
   router.get('/', (req, res) => {
     console.log('***** Getting route path *****');
@@ -46,6 +32,7 @@ export function express_router(app, router) {
     db_prep(client);
   });
 
+  // Heroku postgres connection
   router.get('/db', function (req, res) {
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
       client.query('SELECT * FROM test_table', function(err, result) {
@@ -56,20 +43,57 @@ export function express_router(app, router) {
          { res.render('pages/db', {results: result.rows} ); }
       });
     });
-  })
-
-  router.get('/tenant', (req, res) => {
-    console.log('***** Getting route path *****');
-    react_routing(req, res);
   });
 
-  router.get('/tenant/*', (req, res) => {
-    console.log('***** Getting route path *****');
+  // call to API for listings
+  router.post('/get_listings', (req, res) => {
+      let value = req.body.getListisngs.value;
+      let optionsR = {
+          hostname: 'maps.googleapis.com',
+          port: 443,
+          path: '/maps/api/geocode/json?address='+value,
+          method: 'GET'
+      };
+
+      // Prepare the AJAX call
+      var ajaxG = https.request(optionsG, (res) => {
+        res.setEncoding('utf8');
+        var response = '';
+        res.on('data', (d) => {
+            response += d;
+        });
+        res.on('end', () => {
+          let geoCodes = JSON.parse(response);
+          let lat = geoCodes['results'][0]['geometry']['location']['lat'];
+          let long = geoCodes['results'][0]['geometry']['location']['lng'];
+
+          let optionsR = {
+              hostname: 'rets.io',
+              port: 443,
+              path: '/api/v1/test/listings?access_token='+secrets.SERVER_TOKEN+
+                    '&limit=2&near='+ lat +','+ long +'&radius=60mi',
+              method: 'GET'
+          };
+          retslyGrunt(optionsR, value, function(finalRes) {
+              res.send(finalRes);
+          });
+        });
+      });
+      // End AJAX preparation and send
+      ajaxG.end();
+
+      ajaxG.on('error', (e) => {
+        if(e) console.log("GMaps API Error: ", e);
+      });
+  });
+
+  router.get('/tenant', (req, res) => {
+    console.log('***** Getting tenant route path *****');
     react_routing(req, res);
   });
 
   router.get('/owner', (req, res) => {
-    console.log('***** Getting route path *****');
+    console.log('***** Getting owner route path *****');
     react_routing(req, res);
   });
 
