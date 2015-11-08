@@ -10,28 +10,27 @@ export class Listings extends React.Component {
   shouldCompontentUpdate(nextProps, nextState){
       return (this.state.data !== nextState.data);
   }
-  // loadData() {
-  //   console.log("DL API Data: ", this.state.value0 + " / " + this.state.value1);
-  //
-  //   /*  AJAX REQUEST IN VANILLA JS  */
-  //   let request = new XMLHttpRequest();
-  //   request.open('GET', 'http://127.0.0.1:8000/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
-  //
-  //   request.onload = () => {
-  //       this.setState({
-  //
-  //       });
-  //   }.bind(this);
-  //
-  //   request.onerror = (xhr, status, err) => {
-  //     // if xhr request error, write it to console
-  //     console.error(request.responseURL, status, err.toString());
-  //   };
-  //   request.send();  // send HTTP GETrequest
-  // }
+
+  loadData() {
+    /*  AJAX REQUEST IN VANILLA JS  */
+    let request = new XMLHttpRequest();
+    request.open('POST', 'http://127.0.0.1:8080/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
+
+    request.onload = () => {
+        this.setState({
+            data: request.response
+        });
+    }.bind(this);
+
+    request.onerror = (xhr, status, err) => {
+      // if xhr request error, write it to console
+      console.error(request.responseURL, status, err.toString());
+    };
+    request.send();  // send HTTP GETrequest
+  }
 
   componentDidMount(){
-    //   this.loadData();
+      this.loadData();
   }
 
   render() {
