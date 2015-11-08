@@ -1,6 +1,6 @@
 import https from 'https';
 
-export function retslyGrunt(optionsR, value, done) {
+export function retslyGrunt(optionsR, done) {
   console.log('** Retsly grunt doing work **');
 
   // Prepare the AJAX call
@@ -11,8 +11,8 @@ export function retslyGrunt(optionsR, value, done) {
         finalRes += d;
     });
     res.on('end', () => {
-      let user = JSON.parse(finalRes);
-      done(finalRes);
+      let fRes = JSON.parse(finalRes);
+      done(fRes);
     });
   });
   // End AJAX preparation and send

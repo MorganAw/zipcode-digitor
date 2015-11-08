@@ -9,18 +9,20 @@ export class HomeBody extends React.Component {
   }
 
   shouldCompontentUpdate(nextProps, nextState){
+      console.log('*** home_body shouldCompontentUpdate() ***');
       return (this.state.value !== nextState.value);
   }
 
   initSearch() {
-    let getListisngs = {
+      console.log('*** home_body initSearch() ***');
+    var getListisngs = {
         value: this.state.value
     };
     console.log("POSTING: ", getListisngs);
     if ((this.state.value !== null)&&(this.state.value !== undefined)){
         /*  AJAX REQUEST IN VANILLA JS  */
         let request = new XMLHttpRequest();
-        request.open('POST', 'http://127.0.0.1:8000/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
+        request.open('POST', 'http://127.0.0.1:8080/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
 
         request.onload = () => {
             homeResults = request.response;
@@ -36,6 +38,7 @@ export class HomeBody extends React.Component {
   }
 
   handleChange(event) {
+      console.log('*** home_body handleChange() ***');
     this.setState({value: event.target.value});
   }
 
