@@ -76,7 +76,10 @@
       </div>  
     </div>
     <div class="tabContent" id="tabs-2">
-      <div id="map">
+      <div class="mp">
+          <!--  MAP  -->
+          <div id="map" style="height: 500px; width: 500px;"></div>
+
       </div>
     </div>
     <div class="tabContent" id="tabs-3">
@@ -87,25 +90,45 @@
     </div>
   </div>
   <script> 
-   function initMap() {
-            // Create a map object and specify the DOM element for display.
-            var map = new L.Map("map", { center: [37.756503, -122.439788], 
-                                zoom: 12, 
-                                attributionControl: true });
-          city_sf = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', 
-  { attribution: 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18,
-    id: 'wentaoxu.cien3mu2z05evrskmbwjttxv8',
-    accessToken: 'pk.eyJ1Ijoid2VudGFveHUiLCJhIjoiY2llbjNtdW13MDVmMHJza20wY3B0ZnFoaCJ9.bCIlhzQz6O58tT9s0_z2Mw',
-    minZoom: 11 })
-  .addTo(map);
-        
-      map.setView([37.756503, -122.439788], 0, {
-          reset: true
-      });
+ function initMap() {
+   var myLatLng = {lat: 37.7833, lng: -122.4167};
+   // Specify features and elements to define styles.
+   var styleArray = [
+    {
+      featureType: "all",
+      stylers: [
+       { saturation: -80 }
+      ]
+    },{
+      featureType: "road.arterial",
+      elementType: "geometry",
+      stylers: [
+        { hue: "#00ffee" },
+        { saturation: 50 }
+      ]
+    },{
+      featureType: "poi.business",
+      elementType: "labels",
+      stylers: [
+        { visibility: "off" }
+      ]
+    }
+   ];
 
-        }
-    initMap();
+   // Create a map object and specify the DOM element for display.
+   var map = new google.maps.Map(document.getElementById('map'), {
+    center: new google.maps.LatLng({lat: 37.7833, lng: -122.4167}),
+    zoom: 2,
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    maxZoom: 14,
+    minZoom: 2,
+    scrollwheel: false,
+    // Apply the map style array to the map.
+    styles: styleArray,
+    zoom: 10
+   });
+ }
+
       
     $(function(){
       $('li').click(function(){
