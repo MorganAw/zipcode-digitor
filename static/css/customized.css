@@ -1,0 +1,82 @@
+.landing-page{
+	/*background-color: green;*/
+	background-image: url("../img/sf-apt.jpg");
+	background-size: cover;
+	background-position: center;
+	width: 100%;
+	height: 100%;
+}
+
+div.text-branding{
+	color: white;
+	margin-top: 10%;
+	font-size: 60px;
+	font-size: 5vw;
+	width: 50%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.navbar-background{
+	background: rgba(0,0,0,0.0);
+	border-color: rgba(0,0,0,0.0);
+}
+
+.brand-size{
+	color: white;
+	font-size: 30px;
+	margin-top: 15px;
+}
+
+.search-bar{
+	margin-top: 20%;
+}
+
+#listing{
+	border:3px solid white;  
+}
+
+.navbar-default .navbar-nav>li{
+	margin-top: 10px;
+	margin-left: 10px;
+}
+.navbar-default .navbar-nav>li>a{
+	font-size: 14px;
+	color: white;
+}
+
+.how-it-works{
+	width: 150px;
+	height: 40px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	line-height: 40px;
+	background-color: gray;
+	color: white;
+	font-weight: 700;
+	opacity: 0.8;	
+}
+
+.red-button{
+	background-color: #E50046;
+};
+
+.red-button:hover{
+	background-color: #E50046;
+	opacity: 0.9; 
+};
+
+.explanation-page{
+	position: absolute;
+	display: block;
+	background-color: red;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	height: 2000px;
+	width: 100%;
+};

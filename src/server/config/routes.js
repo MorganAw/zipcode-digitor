@@ -1,3 +1,4 @@
+// Import React
 import React                         from 'react';
 import { renderToString }            from 'react-dom/server';
 import { match, RoutingContext }     from 'react-router';
@@ -5,13 +6,23 @@ import react_routes                  from '../../shared/react_routes';
 import { secrets }                   from './secrets';
 import { retslyGrunt }               from './retslyGrunt';
 
-import pg from 'pg';
-import util from 'util';
+// Import utilities
+import pg                            from 'pg';
+import util                          from 'util';
+// Import controllers
+import { save_tprofile }             from '../controllers/save_tprofile';
+import { db_prep }                   from '../controllers/db_prep';
 
 export function express_router(app, router) {
-  // API endpoints
-  router.post('/save_tsettings', (req, res) => {
+  var conString = "postgres://maw-bsky@localhost/retsly_hackathon";
+  var client = new pg.Client(conString);
 
+  // API endpoints
+  router.post('/save_tprofile', (req, res) => {
+    save_tprofile(req, res, client, (results) => {
+      console.log(results);
+      //return results;
+    });
   });
 
   router.get('/get_listings', (req, res) => {
@@ -32,6 +43,7 @@ export function express_router(app, router) {
   router.get('/', (req, res) => {
     console.log('***** Getting route path *****');
     react_routing(req, res);
+    db_prep(client);
   });
 
   router.get('/db', function (req, res) {
@@ -47,6 +59,11 @@ export function express_router(app, router) {
   })
 
   router.get('/tenant', (req, res) => {
+    console.log('***** Getting route path *****');
+    react_routing(req, res);
+  });
+
+  router.get('/tenant/*', (req, res) => {
     console.log('***** Getting route path *****');
     react_routing(req, res);
   });

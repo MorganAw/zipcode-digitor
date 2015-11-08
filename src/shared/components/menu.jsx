@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export class Menu extends React.Component {
   constructor(props) {
@@ -8,7 +9,16 @@ export class Menu extends React.Component {
     console.log('*** Rendering menu ***');
     return (
       <div>
-        M E N U B O Y S
+        <p>Profile Pic</p>
+        <p>Profile Summary</p>
+        <ul>
+          <li>Stated Income</li>
+          <li>Age</li>
+          <li>Marital Status</li>
+          <li>Job Title</li>
+          <li># of References</li>
+        </ul>
+        <Link to={`/t_settings`}>Settings button</Link>
       </div>
     );
   }
