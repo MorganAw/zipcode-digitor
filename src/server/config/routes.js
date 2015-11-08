@@ -25,6 +25,7 @@ export function express_router(app, router) {
 
   router.get('/tenant', (req, res) => {
     console.log('***** Getting route path *****');
+    
     res.render('tenant.html');
   });
 
