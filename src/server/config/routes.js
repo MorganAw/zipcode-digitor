@@ -63,9 +63,10 @@ export function express_router(app, router) {
     react_routing(req, res);
   });
 
+      var finalR;
   // call to API for listings
   router.post('/get_listings', (req, res) => {
-      var finalR;
+
       if (req.body.value){
           let value = req.body.value;
           let optionsG = {
@@ -102,14 +103,11 @@ export function express_router(app, router) {
 
           ajaxG.on('error', (e) => {
             if(e) console.log("GMaps API Error: ", e);
-          });
+          })
       } else {
+        console.log('finalR: ',finalR);
           res.send(finalR);
       }
-
-      ajaxG.on('error', (e) => {
-        if(e) console.log("GMaps API Error: ", e);
-      });
   });
 
   router.get('/tenant', (req, res) => {

@@ -11,14 +11,14 @@ export class Listings extends React.Component {
       return (this.state.data !== nextState.data);
   }
 
-  loadData() {
+  componentDidMount(){
     /*  AJAX REQUEST IN VANILLA JS  */
     let request = new XMLHttpRequest();
     request.open('POST', 'http://127.0.0.1:8080/get_listings', true);  // 'https://rocky-plateau-3596.herokuapp.com/get_listings'
 
     request.onload = () => {
         this.setState({
-            data: request.response
+            data: JSON.parse(request.response).bundle
         });
     }.bind(this);
 
@@ -29,13 +29,9 @@ export class Listings extends React.Component {
     request.send();  // send HTTP GETrequest
   }
 
-  componentDidMount(){
-      this.loadData();
-  }
-
   render() {
+    console.log('Listings state at render: ', this.state);
     console.log('*** Rendering listings ***');
-    this.state.data = homeResults;
     return (
       <div>
         <p>WE LIST NOW</p>
@@ -50,6 +46,7 @@ class SingleListing extends React.Component {
     super(props);
   }
   render() {
+    console.log('Single Listing props: ', this.props);
     console.log('** Rendering single listing ** ');
     return (
       <div>L I S T I N G B O Y S {this.props.data}</div>
