@@ -24,8 +24,20 @@ div.text-branding{
 	border-color: rgba(0,0,0,0.0);
 }
 
+.navbar-tenant{
+	background: #eeeeee;
+	border-color: rgba(255,255,255,1);
+}
+
+
 .brand-size{
 	color: white;
+	font-size: 30px;
+	margin-top: 15px;
+}
+
+.brand-tenant{
+	color: gray;
 	font-size: 30px;
 	margin-top: 15px;
 }
@@ -98,4 +110,15 @@ div.text-branding{
 	color: white;
 	opacity: 0.9; 
 	text-decoration: none;
+}
+
+/* ------------ tenant.html css -------------*/
+.button-container{
+	position: relative;
+	background-color: #eeeeee;
+}
+
+.button-wrapper{
+	position: absolute;
+	bottom: 0;
 }

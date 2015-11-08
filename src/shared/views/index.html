@@ -15,9 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js"></script>
 </head>
-<body>
-  <div>
-    <div class="landing-page">
+<body class="landing-page">
       <nav class="navbar navbar-default navbar-static-top navbar-background" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -50,18 +48,13 @@
         </div>
       </div>
       <div class="col-xs-8 col-xs-offset-2 search-bar">
-        <div class="input-group">
-        <!-- Change this into a form -->
-        <form method="post" action="/get_listings">
-          <input type="text" class="form-control search-bar-height" placeholder="Where do you want to live?" />
-            <span class="input-group-btn">
-              <input class="btn btn-default red-button search-bar-height" type="submit">Search</input>
-            </span>
-        </form>
-        </div>
-      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Where do you want to live?">
+        <span class="input-group-btn">
+          <a href="/tenant"><input class="btn btn-default red-button search-bar-height" type="submit">Search</input></a>
+        </span>
+      </div><!-- /input-group -->
     </div>
-  </div>
   <script src="/js/toggle-click.js"></script>
   <script src="/js/image-gallery.js"></script>
 </body>
